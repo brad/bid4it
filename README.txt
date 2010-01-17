@@ -3,6 +3,6 @@ Copyright (C) 2009-2010 Josef Nankivell
 
 ----------------------
 
-Instalation
+Installation
 
 Please run the installation file.

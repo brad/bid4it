@@ -38,7 +38,6 @@ CREATE TABLE `closed` (
 -- Dumping data for table `closed`
 -- 
 
-
 -- --------------------------------------------------------
 
 -- 
@@ -74,3 +73,19 @@ INSERT INTO `config` (`auction_id`, `title`, `admin_email`, `notification_from_a
 
 -- --------------------------------------------------------
 
+-- 
+-- Table structure for table `product_categories`
+-- 
+
+CREATE TABLE `product_categories` (
+  `category_id` int(11) NOT NULL auto_increment,
+  `category_name` varchar(64) NOT NULL default '',
+  PRIMARY KEY  (`category_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+-- 
+-- Dumping data for table `product_categories`
+
+INSERT INTO `product_categories` (`category_id`, `category_name`) VALUES (6, 'VCRs');
+
+-- --------------------------------------------------------

@@ -89,3 +89,54 @@ CREATE TABLE `product_categories` (
 INSERT INTO `product_categories` (`category_id`, `category_name`) VALUES (6, 'VCRs');
 
 -- --------------------------------------------------------
+
+--
+-- Table structure for table 'products'
+--
+
+CREATE TABLE 'products' (
+  'product_id' int(11) NOT NULL auto_increment,
+  'produc_name' varchar(64) NOT NULL default'',
+  'product_description' text,
+  'product_image' varchar(128) default NULL,
+  'product_image_mimetype' varchar(128) default NULL,
+  'seller_username' varchar(32) NOT NULL default'',
+  'minimum_bid' float default NULL,
+  'bid_increment' float NOT NULL default '5',
+  'openng_time' datetime default NULL,
+  'closing_time' datetime default NULL,
+  'created_date' datetime default NULL,
+  'modified_date' datetime defaul NULL,
+  'entered_by' varchar(32) default NULL,
+  PRIMARY KEY ('product_id')
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+--  Dumping data for table 'products'
+--
+
+
+--
+-- Table structure for table 'users'
+--
+
+
+CREATE TABLE 'users' (
+  'username' varchar(32) NOT NULL default '';
+  'password' varchar(32) NOT NULL default '';
+  'firstname' varchar(32) default NULL;
+  'lastname' varchar(32) default NULL;
+  'title' varchar(32) default NULL;
+  'department' varchar(32) default NULL;
+  'phone' varchar(15) default NULL;
+  'email' varchar(64) NOT NULL default '',
+  'role' enum('USER','ADMIN') NOT NULL default 'USER',
+  'prefs_receive_outbid_notifications' tinyint(1) NOT NULL default '1',
+  'timezone' varchar(64) default NULL,
+  PRIMARY KEY ('username')
+) ENGINE=MyISAM DEFAULT CHARSET-latin1;
+
+--
+-- Dumping data for table 'users'
+--
+

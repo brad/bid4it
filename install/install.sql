@@ -140,3 +140,4 @@ CREATE TABLE 'users' (
 -- Dumping data for table 'users'
 --
 
+INSERT INTO 'users; ('username', 'password', 'firstname', 'lastname', 'title', 'department', 'phone', 'email', 'role', 'prefs_recieve_outbid_notifications', 'timezone') VALUES ('admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Administrator', '', 'Admin', 'Auction', '01234-987654', 'admin@bid4it.com', 'ADMIN', 1, NULL); 

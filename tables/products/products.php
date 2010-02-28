@@ -75,22 +75,47 @@ class tables_products {
 	
 	function high_bid_amount__display(&$record){
 		// Shows the amount of the higest bid
+
 	}
 
 	function field__isOpen(&$record){
 		// Can the product still be bid on
+		return ($record->val('opening_time_seconds') < time() and time() < $record->val('cooked_closing_time_seconds'));
 	}	
 	
 	function field__cooked_closing_time_seconds(&$record){
 		// How long until closed
+		$closing_time = $record->strval('closing_time');
+		if ( !$closing_time ){
+			$app =& Dataface_Application::getInstance();
+			$closing_time = $app->_conf['df_auction']['closing_time'];
+		}
+		
+		$closing_time_seconds = strtotime($closing_time);
+		$high_bid = $record->val('high_bid');
+		if ( $high_bid ){
+			$bid_time = $high_bid->strval('time_of_bid');
+			$closing_time_seconds = max($closing_time_seconds, strtotime($bid_time));
+		}
+		return $closing_time_seconds;
 	}
 	
 	function field__opening_time_seconds(&$record){
 		// Opening time of the product
+		return strtotime($record->strval('opening_time'));
 	}
 	
 	function field__cooked_minimum_bid(&$record){
-		// Minimum next bid amount	
+		// Minimum next bid amount
+		if ( $record->val('bid_increment')){
+			$increment = floatval($record->val('bid_increment'));
+		} else {
+			$increment = floatval(getConf('bid_increment'));
+		}
+		if ( getConf('reverse_auction') ){
+			$increment = $increment * (-1);
+		}
+		return max($record->val('minimum_bid'), $record->val('high_bid_amount')+$increment);		
 	}
 	
 	function seller_username__default(){
@@ -100,6 +125,7 @@ class tables_products {
 	
 	function minimum_bid__default(){
 		// Default minimum bid
+		return getConf('default_minimum_bid');
 	}
 	
 	function opening_time__default(){
@@ -116,7 +142,6 @@ class tables_products {
 		return $time;	
 	}
 	
-
 	function current_high_bid__display(&$record){
 		// Display higest current bidder
 		return '$'.number_format($record->val('current_high_bid'),2);		

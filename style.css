@@ -1,21 +1,98 @@
-#product-list{
+.controllerJumpMenu { display: none}
+
+#product-list {
+
+
 }
 
-/** application menu **/
+#product-list li img {
+	float: left;
+	margin: 0 1em 1em 0.5em;
+
+}
+
+#product-list li {
+
+	margin: 0;
+	padding: 0;
+}
+
+#product-list li dl.product-details dt, #product-list li dl.product-details dd {
+	display: inline;
+	padding: 0;
+	padding-right: 1em;
+	margin: 0;
+
+}
+
+#product-list li dl.product-details dt {
+
+
+}
+
+#product-list li dl.product-details dd {
+
+}
+
+#product-list li dl.product-details {
+
+}	
+
+
+#product-list li:hover {
+	background-color: #eaeaea;
+}
+
+
+/** APPLICATION MENU STYLES **/
 div.menu-block dl dd {
 	margin: 0;
 	padding: 0;
 }
-div.menu-blocl=k dl dd a {
+div.menu-block dl dd a {
 	display: block;
-	height: ;
+	height: 32px;
 	text-decoration: none;
 	background-repeat: no-repeat;
-	padding-left: ;
-	padding-top: ;
-	font-size: ;
+	padding-left: 38px;
+	font-size: 14px;
+	padding-top: 8px;
+
 }
 
-/** Product list **/
+#menu-watchlist a {
 
+}
 
+#menu-edit-profile a {
+
+}
+
+#menu-auction-settings a {
+
+}
+
+#menu-add-product a {
+
+}
+
+#menu-add-category a {
+
+}
+
+#menu-view-reports a {
+
+}
+
+/** Product List Styles **/
+
+ol#product-list li {
+	list-style-type: none;
+	list-style-image: none;
+	border-bottom: 1px solid #eaeaea;
+}
+
+ol#product-list li a {
+	text-decoration: none;
+	
+}

@@ -1,4 +1,4 @@
-Bid4it - An online marketplace version 0.1
+Bid4it! - An online marketplace
 Copyright (C) 2009-2010 Josef Nankivell
 
 ----------------------

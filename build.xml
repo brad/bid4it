@@ -2,7 +2,7 @@
 	<target name="init">
 		<property name="sourceDir" value="."/>
 		<property name="libDir" value="lib"/>
-		<property name="datafaceDir" value="${sourceDir}/core" />
+		<property name="coreDir" value="${sourceDir}/core" />
    		<property name="docsDir" value="docs" />
    		<property name="testsDir" value="tests" />
    		<property name="tablesDir" value="tables" />
@@ -15,6 +15,37 @@
 		<deltree dir="${sourceDir}/core" />
 	</target>
 
-
+	<target name="prodn" depends="clean">
+		<deltree dir="${coreDir}/${docsDir}"/>
+		<deltree dir="${coreDir}/${testsDir}"/>
+		<deltree dir="${coreDir}/${tablesDir}"/>
+		<deltree dir="${coreDir}/lib/Auth"/>
+		<deltree dir="${coreDir}/lib/Cache"/>
+		<deltree dir="${coreDir}/lib/DB"/>
+		<delete file="${coreDir}/lib/DB.php"/>
+		<deltree dir="${coreDir}/lib/Event"/>
+		<delete file="${coreDir}/lib/excel.php"/>
+		<deltree dir="${coreDir}/lib/FX"/>
+		<delete file="${coreDir}/lib/LiveUser.php"/>
+		<deltree dir="${coreDir}/lib/PHPUnit"/>
+		<delete file="${coreDir}/lib/PHPUnit.php"/>
+		<deltree dir="${coreDir}/lib/Perm"/>
+		<deltree dir="${coreDir}/lib/Var_Dump"/>
+		<delete file="${coreDir}/lib/Var_Dump.php"/>
+		<deltree dir="${coreDir}/lib/docs"/>
+		<deltree dir="${coreDir}/lib/phpThumb"/>
+		<deltree dir="${coreDir}/lib/simpletest"/>
+		<deltree dir="${coreDir}/modules/Auth"/>
+		<deltree dir="${coreDir}/modules/Feedburner"/>
+		<delete file="${coreDir}/Dataface/QueryTranslator.php"/>
+		<deltree dir="${coreDir}/lib/dhtmlxGrid/samples" />
+		<deltree dir="${coreDir}/lib/dhtmlxGrid/src" />
+		<deltree dir="${coreDir}/lib/dhtmlxGrid/doc" />
+		<delete file="${coreDir}/lib/dhtmlxGrid/dhtmlxGrid.zip" />
+		<deltree dir="${coreDir}/lib/FCKeditor"/>
+	   	<deltree dir="${coreDir}/lib/HTTP"/>
+	   	<deltree dir="${coreDir}/lib/phpThumb"/>
+	   	<deltree dir="${coreDir}/lib/tiny_mce"/>
+	</target>
 
 </project>

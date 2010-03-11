@@ -1,0 +1,20 @@
+<project name="bid4it" default="prodn" basedir=".">
+	<target name="init">
+		<property name="sourceDir" value="."/>
+		<property name="libDir" value="lib"/>
+		<property name="datafaceDir" value="${sourceDir}/core" />
+   		<property name="docsDir" value="docs" />
+   		<property name="testsDir" value="tests" />
+   		<property name="tablesDir" value="tables" />
+   		<property name="casOutputDir" value="/tmp/dataface_cas_module" />
+   		<property name="sourceGuardianEncode5" value="/usr/local/php5/sg6/bin/encode5"/>
+   		<property name="feedburnerOutputDir" value="/tmp/dataface_feedburner_module" />
+	</target>
+	
+	<target name="clean" depends="init">
+		<deltree dir="${sourceDir}/core" />
+	</target>
+
+
+
+</project>

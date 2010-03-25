@@ -1,3 +1,17 @@
+-- phpMyAdmin SQL Dump
+-- version 2.8.2
+-- http://www.phpmyadmin.net
+-- 
+-- Host: localhost:3306
+-- Generation Time: Feb 09, 2008 at 09:40 PM
+-- Server version: 5.0.51
+-- PHP Version: 5.2.4
+-- 
+-- Database: `apps_12`
+-- 
+
+-- --------------------------------------------------------
+
 -- 
 -- Table structure for table `bids`
 -- 
@@ -38,6 +52,7 @@ CREATE TABLE `closed` (
 -- Dumping data for table `closed`
 -- 
 
+
 -- --------------------------------------------------------
 
 -- 
@@ -74,6 +89,22 @@ INSERT INTO `config` (`auction_id`, `title`, `admin_email`, `notification_from_a
 -- --------------------------------------------------------
 
 -- 
+-- Table structure for table `dataface__version`
+-- 
+
+CREATE TABLE `dataface__version` (
+  `version` int(5) NOT NULL default '0'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- 
+-- Dumping data for table `dataface__version`
+-- 
+
+INSERT INTO `dataface__version` (`version`) VALUES (30);
+
+-- --------------------------------------------------------
+
+-- 
 -- Table structure for table `product_categories`
 -- 
 
@@ -85,59 +116,62 @@ CREATE TABLE `product_categories` (
 
 -- 
 -- Dumping data for table `product_categories`
+-- 
 
 INSERT INTO `product_categories` (`category_id`, `category_name`) VALUES (6, 'VCRs');
 
 -- --------------------------------------------------------
 
---
--- Table structure for table 'products'
---
+-- 
+-- Table structure for table `products`
+-- 
 
-CREATE TABLE 'products' (
-  'product_id' int(11) NOT NULL auto_increment,
-  'produc_name' varchar(64) NOT NULL default'',
-  'product_description' text,
-  'product_image' varchar(128) default NULL,
-  'product_image_mimetype' varchar(128) default NULL,
-  'seller_username' varchar(32) NOT NULL default'',
-  'minimum_bid' float default NULL,
-  'bid_increment' float NOT NULL default '5',
-  'openng_time' datetime default NULL,
-  'closing_time' datetime default NULL,
-  'created_date' datetime default NULL,
-  'modified_date' datetime defaul NULL,
-  'entered_by' varchar(32) default NULL,
-  PRIMARY KEY ('product_id')
+CREATE TABLE `products` (
+  `product_id` int(11) NOT NULL auto_increment,
+  `product_name` varchar(64) NOT NULL default '',
+  `product_description` text,
+  `product_image` varchar(128) default NULL,
+  `product_image_mimetype` varchar(128) default NULL,
+  `product_categories` varchar(32) default NULL,
+  `seller_username` varchar(32) NOT NULL default '',
+  `minimum_bid` float default NULL,
+  `bid_increment` float NOT NULL default '5',
+  `opening_time` datetime default NULL,
+  `closing_time` datetime default NULL,
+  `created_date` datetime default NULL,
+  `modified_date` datetime default NULL,
+  `entered_by` varchar(32) default NULL,
+  PRIMARY KEY  (`product_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
---
---  Dumping data for table 'products'
---
+-- 
+-- Dumping data for table `products`
+-- 
 
 
---
--- Table structure for table 'users'
---
+-- --------------------------------------------------------
 
+-- 
+-- Table structure for table `users`
+-- 
 
-CREATE TABLE 'users' (
-  'username' varchar(32) NOT NULL default '';
-  'password' varchar(32) NOT NULL default '';
-  'firstname' varchar(32) default NULL;
-  'lastname' varchar(32) default NULL;
-  'title' varchar(32) default NULL;
-  'department' varchar(32) default NULL;
-  'phone' varchar(15) default NULL;
-  'email' varchar(64) NOT NULL default '',
-  'role' enum('USER','ADMIN') NOT NULL default 'USER',
-  'prefs_receive_outbid_notifications' tinyint(1) NOT NULL default '1',
-  'timezone' varchar(64) default NULL,
-  PRIMARY KEY ('username')
-) ENGINE=MyISAM DEFAULT CHARSET-latin1;
+CREATE TABLE `users` (
+  `username` varchar(32) NOT NULL default '',
+  `password` varchar(32) NOT NULL default '',
+  `firstname` varchar(32) default NULL,
+  `lastname` varchar(32) default NULL,
+  `title` varchar(32) default NULL,
+  `department` varchar(32) default NULL,
+  `phone` varchar(15) default NULL,
+  `email` varchar(64) NOT NULL default '',
+  `role` enum('USER','ADMIN') NOT NULL default 'USER',
+  `prefs_receive_outbid_notifications` tinyint(1) NOT NULL default '1',
+  `timezone` varchar(64) default NULL,
+  PRIMARY KEY  (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table 'users'
---
+-- 
+-- Dumping data for table `users`
+-- 
 
-INSERT INTO 'users; ('username', 'password', 'firstname', 'lastname', 'title', 'department', 'phone', 'email', 'role', 'prefs_recieve_outbid_notifications', 'timezone') VALUES ('admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Administrator', '', 'Admin', 'Auction', '01234-987654', 'admin@bid4it.com', 'ADMIN', 1, NULL); 
+INSERT INTO `users` (`username`, `password`, `firstname`, `lastname`, `title`, `department`, `phone`, `email`, `role`, `prefs_receive_outbid_notifications`, `timezone`) VALUES ('admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Administrator', '', 'Admin', 'Auction', '01752-223344', 'josefnankivell@gmail.com', 'ADMIN', 1, NULL);

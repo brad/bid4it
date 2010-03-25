@@ -1,0 +1,69 @@
+{*-------------------------------------------------------------------------------
+ * Dataface Web Application Framework
+ * Copyright (C) 2005-2006  Steve Hannah (shannah@sfu.ca)
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *-------------------------------------------------------------------------------
+ *}
+{if $ENV.prefs.horizontal_tables_menu}
+
+<ul id="table_selection_tabs">
+	{block name="tables_menu_head"}
+	{define_slot name="tables_menu_options"}
+	{foreach from=$ENV.APPLICATION._tables item=label key=table}
+	<li {if $ENV.table==$table}class="selected"{/if}><a href="{$ENV.DATAFACE_SITE_HREF}?-table={$table}"
+                           accesskey="accesskeys-navigation"
+                           class="table-selection-tab {if $ENV.table==$table}selected{/if}"
+                           title="{$label}"
+                           id="TableLink_{$table}">
+                            
+                            
+                                  {$label}
+                            
+                        </a></li>
+ 	{/foreach}
+ 	{/define_slot}
+ 	{block name="tables_menu_tail"}
+ </ul>
+
+{else}
+<div class="portlet" id="portlet-navigation-tree">
+    <div>
+        <h5>Navigation</h5>
+        <div class="portletBody">
+        {block name="tables_menu_head"}
+        {foreach from=$ENV.APPLICATION._tables item=label key=table}
+        
+        	{define_slot name="tables_menu_options"}
+            <div class="portletContent">
+             <a href="{$ENV.DATAFACE_SITE_HREF}?-table={$table}"
+                           accesskey="accesskeys-navigation"
+                           class="navItem {if $ENV.table==$table}currentNavItem{/if}"
+                           title="{$label}"
+                           id="TableLink_{$table}">
+                            <img
+    src="{$ENV.DATAFACE_URL}/images/folder_icon.gif" alt="" class="navIconRoot" title="Plone Site" />
+                            <span class="navItemText">
+                                  {$label}
+                            </span>
+                        </a>
+           </div>
+           {/define_slot}
+       {/foreach}
+       {block name="tables_menu_tail"}
+       </div>
+   </div>
+</div>
+{/if}

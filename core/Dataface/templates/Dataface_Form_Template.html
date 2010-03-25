@@ -1,0 +1,135 @@
+
+<!-- Display the fields -->
+{*	
+	Contents:
+	---------
+	
+	#00 - Introduction/ Comments
+	#01 - Sections loop
+		#02 - Scriptaculous collapsible bar.
+		#03 - Inner elements loop
+		
+	
+
+	#00 - Introduction /Comments
+	-----------------------------
+	This template displays an entire HTML QuickForm form.  It is designed to 
+	be used with the HTML_QuickForm_Renderer_ArrayDataface class which produces
+	an array of the form:
+	 array(
+   'frozen'           => 'whether the form is frozen',
+   'javascript'       => 'javascript for client-side validation',
+   'attributes'       => 'attributes for <form> tag',
+   'requirednote      => 'note about the required elements',
+   // if we set the option to collect hidden elements
+   'hidden'           => 'collected html of all hidden elements',
+   // if there were some validation errors:
+   'errors' => array(
+     '1st element name' => 'Error for the 1st element',
+     ...
+     'nth element name' => 'Error for the nth element'
+   ),
+   // if there are no headers in the form:
+   'elements' => array(
+     element_1,
+     ...
+     element_N
+   )
+   // if there are headers in the form:
+   'sections' => array(
+     array(
+       'header'   => 'Header text for the first header',
+       'name'     => 'Header name for the first header',
+       'elements' => array(
+          element_1,
+          ...
+          element_K1
+       )
+     ),
+     ...
+     array(
+       'header'   => 'Header text for the Mth header',
+       'name'     => 'Header name for the Mth header',
+       'elements' => array(
+          element_1,
+          ...
+          element_KM
+       )
+     )
+   )
+ );
+
+ where element_i is an array of the form:
+ array(
+   'name'      => 'element name',
+   'value'     => 'element value',
+   'type'      => 'type of the element',
+   'frozen'    => 'whether element is frozen',
+   'label'     => 'label for the element',
+   'required'  => 'whether element is required',
+   'error'     => 'error associated with the element',
+   'style'     => 'some information about element style (e.g. for Smarty)',
+   'field'	   => 'field definition array for the associated field',
+   // if element is not a group
+   'html'      => 'HTML for the element'
+   // if element is a group
+   'separator' => 'separator for group elements',
+   'elements'  => array(
+     element_1,
+     ...
+     element_N
+   )
+ );
+ *}
+ 
+{literal}
+<script language="javascript" type="text/javascript"><!--
+	function Dataface_QuickForm(){
+		
+	}
+	Dataface_QuickForm.prototype.setFocus = function(element_name){
+		document.{/literal}{$form_data.name}{literal}.elements[element_name].focus();
+		document.{/literal}{$form_data.name}{literal}.elements[element_name].select();
+	}
+	var quickForm = new Dataface_QuickForm();
+//--></script>
+{/literal}
+		
+<form{$form_data.attributes}>
+{$form_data.hidden}
+{$form_data.javascript}
+ 
+{*
+	#01 - Outer sections loop
+	-------------------------
+	We begin by going through each section of the form individually.
+	
+*}
+
+{include file=Dataface_Form_Section_Template.html elements=$form_data.elements}
+{foreach from=$form_data.sections item=section}
+	{if $section.elements}
+
+		{*
+			#02 - Scriptaculous collapsible sidebar
+			---------------------------------------
+			Let's use a scriptaculous collapsible sidebar for each section
+			so that we have that cool animation effect it the user wants to
+			hide a section.
+		*}
+		{if $section.field.collapsed}{assign var=display value=collapsed}{else}{assign var=display value=expanded}{/if}
+		{if $section.name == '__submit__'}{assign var="hide_heading" value="1"}{else}{assign var="hide_heading" value="0"}{/if}
+		
+		{collapsible_sidebar heading=$section.header display=$display hide_heading=$hide_heading}
+			{if $section.field.template}
+				{include file=$section.field.template elements=$section.elements}
+			{else}
+				{include file="Dataface_Form_Section_Template.html" elements=$section.elements}
+			{/if}
+		{/collapsible_sidebar}
+	{/if}
+{/foreach}
+
+</form>
+
+ 

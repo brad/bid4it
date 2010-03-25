@@ -1,0 +1,42 @@
+{*-------------------------------------------------------------------------------
+ * Dataface Web Application Framework
+ * Copyright (C) 2005-2006  Steve Hannah (shannah@sfu.ca)
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *-------------------------------------------------------------------------------
+ *}
+{define_slot name="actions_menu"}
+{if $actions|@count > 0}
+<ul {if $class}class="{$class}"{/if} {if $id}id="{$id}"{/if}>
+	{block name="actions_menu_head"}
+{foreach item=action from=$actions key=name}
+            
+              <li id="{$id_prefix}{$action.id}"
+                  {if $action.name==$selected_action or $action.selected}class="selected"{else}class="plain"{/if}>
+                
+                <a id="{$id_prefix}{$action.id}-link" href="{if $action.name==$selected_action or $action.selected}#{else}{$action.url}{/if}"{if $action.onclick} onclick="{$action.onclick}"{/if}
+                   accesskey="{$action.accessKey}" title="{$action.description}">
+                   {if $action.icon}<img id="{$id_prefix}{$action.id}-icon" src="{$action.icon}" alt="{$action.label}"/>{/if}
+                   <span class="action-label">{$action.label}</span>
+                </a>
+              </li>
+            
+            
+{/foreach}
+            
+     {block name="actions_menu_tail"}       
+</ul>
+{/if}
+{/define_slot}

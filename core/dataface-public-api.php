@@ -20,10 +20,6 @@
  */
  
 /**
- * File:	/dataface-public-api.php
- *
- * Description:
- * ------------
  * A Procedural API to the Dataface framework.  This is designed to same developers
  * time trying to figure out what all the classes are and what they do.  This api
  * provides functions to access all importand aspects of the framework.

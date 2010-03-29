@@ -3,11 +3,11 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost:3306
--- Generation Time: Feb 09, 2008 at 09:40 PM
+-- Generation Time: Mar 20, 2010 at 07:56 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.4
 -- 
--- Database: `apps_12`
+-- Database: `bid4it`
 -- 
 
 -- --------------------------------------------------------

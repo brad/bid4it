@@ -3,6 +3,9 @@ class tables_products {
 
 	function afterDelete(&$record){
 		// Delete the image when the product is removed
+		$imgfile = basename($record->val('product_image'));
+		$imgField =& $record->_table->getField('product_image');
+		@unlink($imgField['savepath'].'/'.$imgfile);
 	}
 
 	function field__high_bid(&$record){
@@ -75,7 +78,9 @@ class tables_products {
 	
 	function high_bid_amount__display(&$record){
 		// Shows the amount of the higest bid
-
+		$amt = $record->val('high_bid_amount');
+		$out = '$'.number_format(unserialize(serialize($amt)), 2);
+		return $out;
 	}
 
 	function field__isOpen(&$record){
@@ -138,7 +143,7 @@ class tables_products {
 	function closing_time__default(){
 		// Default closing time
 		$time = getConf('default_closing_time');
-		if ( !$time ) $time = date('Y-m-d H:i:s', time()+(60*60*24*7*2)); // 2 weeks from now
+		if ( !$time ) $time = date('Y-m-d H:i:s', time()+(60*60*24*7)); // 1 week from now
 		return $time;	
 	}
 	
@@ -152,11 +157,19 @@ class tables_products {
 		return '$'.number_format($record->val('minimum_bid'),2);
 	}
 
-//	function block__view_tab_content(){
-//	}
+	function block__view_tab_content(){
+		$app =& Dataface_Application::getInstance();
+		$record =& $app->getRecord();
+		df_display(array('product'=>&$record), 'view_product.html'); 
+	}
 	
-//	function block__result_list(){
-//	}
+	function block__result_list(){
+		if ( isAdmin() ) return PEAR::raiseError("Just show the default list");
+		$app =& Dataface_Application::getInstance();
+		$query =& $app->getQuery();
+		$products = df_get_records_array('products', $query);
+		df_display(array('products'=>&$products), 'public_product_list.html');
+	}
 	
 }
 ?>

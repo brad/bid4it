@@ -1,0 +1,37 @@
+<div id="product-view">
+	<!--<h1>{$product->htmlValue('product_name')}</h1>-->
+	<div class="product-image"><img src="{$product->display('product_image')}" width="200"/></div>
+	<div class="product-description">
+		{$product->htmlValue('product_description')}
+	</div>
+	<dl class="product-details">
+		<dt>Categories:</dt><dd>{$product->htmlValue('product_categories')}</dd>
+		<dt>Current high bid:</dt><dd>{$product->htmlValue('high_bid_amount')}</dd>
+		{if !$product->val('isOpen')}
+			<dt>Bidding open date</dt><dd>{$product->htmlValue('opening_time')}</dd>
+		{/if}
+		<dt>Bidding close time</dt><dd>{$product->htmlValue('closing_time')}</dd>	
+	</dl>
+	{if isLoggedIn()}
+		{if $product->val('isOpen') and $product->val('high_bidder') != getUsername()}
+		<form action="{$ENV.DATAFACE_SITE_HREF}" method="post">
+		<input type="hidden" name="--force-validate" value="1" />
+		<input type="hidden" name="-action" value="bid" />
+		<input type="hidden" name="product_id" value="{$product->val('product_id')}" />
+			<fieldset>
+				<legend>Bid on this item</legend>
+				<label>Amount:</label><input type="text" name="--bid-amount" value="{$product->val('cooked_minimum_bid')|string_format:"%.2f"}" size="6"/>
+				<input type="submit" name="submit" value="Submit Bid Now"/>
+			</fieldset>
+		</form>
+		{elseif $product->val('high_bidder') != getUsername()}
+			<b>You cannot bid on this product at this time because bidding is not currently open.  Check the open and close times for this product above.</b>
+		{else}
+			<b>You are currently the high bidder on this item.</b>
+		{/if}
+	{else}
+	{assign var="product_id" value=$product->val('product_id')}
+	
+	<a href="{$ENV.DATAFACE_SITE_HREF}?-action=login">Log in to bid on this item</a>
+	{/if}
+</div>

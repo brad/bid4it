@@ -46,7 +46,7 @@ class conf_ApplicationDelegate {
 	function getPreferences(){
 		$user =& getUser();
 		if ( function_exists('date_default_timezone_set') ){
-			getConf('timezone'); // set the default timezone first in case this hasn't been called yet
+			getConf('timezone'); // set the default timezone first
 			if ( $user and $user->val('timezone') ){
 				date_default_timezone_set($user->val('timezone'));
 			}			
@@ -73,8 +73,7 @@ class conf_ApplicationDelegate {
 	}
 	
 	/**
-	 * Ensure we aren't running multiple instances of this script
-	 * This function will return true if it got the mutex
+	 * Ensure we aren't running several instances of this script
 	 * @param string $name mutex name.
 	 */
 	function mutex($name){

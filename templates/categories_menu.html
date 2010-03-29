@@ -1,0 +1,9 @@
+<div class="menu-block">
+<dl id="categories-menu" class="side-menu">
+	<dt>Categories</dt>
+	<dd><a href="{$ENV.DATAFACE_SITE_HREF}?-action=list&-table=products" title="All products">Show All Products</a></dd>
+	{foreach from=$categories item=category}
+		<dd><a href="{$ENV.DATAFACE_SITE_HREF}?-action=list&-table=products&product_categories={$category.category_id}" title="Show products in the `$category.category_name` category">{$category.category_name}  <em>({$category.num})</em></a></dd>
+	{/foreach}
+</dl>
+</div>

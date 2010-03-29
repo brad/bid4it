@@ -4,12 +4,12 @@
 $time = microtime(true);
 	// use the timer to time how long it takes to generate a page
 require_once '{__DATAFACE_PATH__}/dataface-public-api.php';
-	// include the initialization file
+	// include the initialisation file
 df_init(__FILE__, '{__DATAFACE_URL__}');
-	// initialize the site
+	// initialise the site
 
 $app =& Dataface_Application::getInstance();
-	// get an application instance and perform initialization
+	// get an application instance and perform initialisation
 $app->display();
 	// display the application
 

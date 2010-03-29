@@ -1,0 +1,21 @@
+
+
+<ol id="product-list">
+{foreach from=$products item=product name=product}
+	<li><a class="product-link" href="{$product->getURL('-action=view')}">
+		
+		<h3>{$product->display('product_name')}</h3>
+		<img src="{$product->display('product_image')}" width="75" />
+		<p class="product-description">{$product->preview('product_description')}</p>
+		<dl class="product-details">
+			<dt>Minimum Bid</dt><dd>{$product->display('minimum_bid')}</dd>
+			<dt>Current Bid</dt><dd>{$product->display('current_high_bid')}</dd>
+		</dl>
+		<div style="clear: both"></div>
+	</a></li>
+	
+{/foreach}
+</ol>
+
+<div style="clear: both"></div>
+{result_controller}

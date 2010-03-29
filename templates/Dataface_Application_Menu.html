@@ -1,0 +1,19 @@
+{if isLoggedIn()}
+<div class="menu-block">
+	<dl>
+		<dt>Options</dt>
+		
+			<dd id="menu-watchlist"><a href="{$ENV.DATAFACE_SITE_HREF}?-action=watch_list">Watch List</a></dd>
+			<dd id="menu-edit-profile"><a href="{$ENV.DATAFACE_SITE_HREF}?-action=edit&-table=users&username=={$ENV.username}">Edit My Profile</a></dd>
+			{if isAdmin()}
+				<dd id="menu-auction-settings"><a href="{$ENV.DATAFACE_SITE_HREF}?-action=edit&-table=config">Auction Settings</a></dd>
+				<dd id="menu-add-product"><a href="{$ENV.DATAFACE_SITE_HREF}?-action=new&-table=products">Add New Product</a></dd>
+				<dd id="menu-add-category"><a href="{$ENV.DATAFACE_SITE_HREF}?-action=new&-table=product_categories">Add New Category</a></dd>
+				<dd id="menu-view-reports"><a href="{$ENV.DATAFACE_SITE_HREF}?-action=reports">View Reports</a></dd>
+			
+			{/if}
+
+	</dl>
+	
+</div>		
+{/if}

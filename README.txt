@@ -5,4 +5,4 @@ Copyright (C) 2009-2010 Josef Nankivell
 
 Installation
 
-Please run the installation file.
+Please run the installation file (install/install.php).
